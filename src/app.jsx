@@ -1,45 +1,21 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./App.css";
-import Habits from "./components/habits";
+import NavFu from "./components/fuNav";
+import FuBody from "./components/FuBody";
 
-class App extends Component {
-  state = {
-    habits: [
-      { id: 1, name: "Reading", count: 0 },
-      { id: 2, name: "Running", count: 0 },
-      { id: 3, name: "Coding", count: 0 },
-    ],
-  };
+function App() {
+  const [habits, setHabits] = useState([
+    { id: 1, name: "리액트다루기", count: 0 },
+    { id: 2, name: "자바스크립트", count: 0 },
+    { id: 3, name: "컴퓨터과학", count: 0 },
+  ]);
 
-  handleIncrement = (habit) => {
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    habits[index].count++;
-    this.setState({ habits });
-  };
-
-  handleDecrement = (habit) => {
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    habits[index].count--;
-    this.setState({ habits });
-  };
-
-  handleDelete = (habit) => {
-    const habits = this.state.habits.filter((item) => item.id !== habit.id);
-    this.setState({ habits });
-  };
-
-  render() {
-    return (
-      <Habits
-        habits={this.state.habits}
-        handleIncrement={this.handleIncrement}
-        handleDecrement={this.handleDecrement}
-        handleDelete={this.handleDelete}
-      />
-    );
-  }
+  return (
+    <>
+      <NavFu habits={habits} />
+      <FuBody habits={habits} setHabits={setHabits} />
+    </>
+  );
 }
 
 export default App;
