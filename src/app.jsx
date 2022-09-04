@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Habits from "./components/habits";
+import Nav from "./components/nav";
 
 class App extends Component {
   state = {
@@ -11,17 +12,44 @@ class App extends Component {
     ],
   };
 
+  // handleIncrement = (habit) => {
+  //   const habits = [...this.state.habits];
+  //   const index = habits.indexOf(habit);
+  //   habits[index].count++;
+  //   this.setState({ habits });
+  // };
+  // handleDecrement = (habit) => {
+  //   const habits = [...this.state.habits];
+  //   const index = habits.indexOf(habit);
+  //   habits[index].count--;
+  //   this.setState({ habits });
+  // };
+  // handleReset = () => {
+  //   const habits = this.state.habits.map((habit) => {
+  //     habit.count = 0
+  //     return habit;
+  //    });
+  //   this.setState({ habits });
+  // };
+
+  //Habit.jsx에 purecomponent를 사용했을 때  주소값은 같지만 변화한 count값을 따로 명시해서 얕은 복사 진행하기
   handleIncrement = (habit) => {
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    habits[index].count++;
+    const habits = this.state.habits.map((item) => {
+      if (habit.id === item.id) {
+        return { ...habit, count: habit.count + 1 };
+      }
+      return item;
+    });
     this.setState({ habits });
   };
 
   handleDecrement = (habit) => {
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    habits[index].count--;
+    const habits = this.state.habits.map((item) => {
+      if (habit.id === item.id) {
+        return { ...habit, count: habit.count - 1 };
+      }
+      return item;
+    });
     this.setState({ habits });
   };
 
@@ -30,14 +58,37 @@ class App extends Component {
     this.setState({ habits });
   };
 
+  handleAdd = (name) => {
+    const habits = [
+      { id: Date.now(), name: name, count: 0 },
+      ...this.state.habits,
+    ];
+    this.setState({ habits });
+  };
+
+  handleReset = () => {
+    const habits = this.state.habits.map((habit) => {
+      if (habit.count !== 0) {
+        return { ...habit, count: 0 };
+      }
+      return habit;
+    });
+    this.setState({ habits });
+  };
+
   render() {
     return (
-      <Habits
-        habits={this.state.habits}
-        handleIncrement={this.handleIncrement}
-        handleDecrement={this.handleDecrement}
-        handleDelete={this.handleDelete}
-      />
+      <>
+        <Nav habits={this.state.habits} />
+        <Habits
+          habits={this.state.habits}
+          handleIncrement={this.handleIncrement}
+          handleDecrement={this.handleDecrement}
+          handleDelete={this.handleDelete}
+          handleAdd={this.handleAdd}
+          handleReset={this.handleReset}
+        />
+      </>
     );
   }
 }

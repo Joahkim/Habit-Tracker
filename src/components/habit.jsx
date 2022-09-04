@@ -1,17 +1,13 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { BsPlusCircle, BsDashCircle, BsTrash } from "react-icons/bs";
 
-class Habit extends Component {
-  // handleIncrement = () => {
-  //   this.props.onIncrement(this.props.habit);
-  // };
-  // handleDecrement = () => {
-  //   this.props.onDecrement(this.props.habit);
-  // };
-  // handleDelete = () => {
-  //   this.props.onDelete(this.props.habit);
-  // };
-
+class Habit extends PureComponent {
+  componentDidMount() {
+    console.log("습관이 추가되었습니다");
+  }
+  componentWillUnmount() {
+    console.log("습관이 삭제되었습니다.");
+  }
   render() {
     const { name, count } = this.props.habit;
     return (
