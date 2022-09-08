@@ -16,6 +16,8 @@ const FuAddList = ({ habits, setHabits }) => {
     setHabits(added);
   };
 
+  console.log("추가", habits);
+
   return (
     <div>
       <form onClick={submitHabit} ref={formRef}>

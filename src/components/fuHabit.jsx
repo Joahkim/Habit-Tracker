@@ -1,8 +1,14 @@
 import React from "react";
 import { BsPlusCircle, BsDashCircle, BsTrash } from "react-icons/bs";
 
-const HabitFu = ({ habit, handleIncrement, handleDecrement, handleDelete }) => {
-  const { name, count } = habit;
+const HabitFu = ({
+  habits,
+  handleIncrement,
+  handleDecrement,
+  handleDelete,
+}) => {
+  const { name, count } = habits;
+  console.log("해빗", habits);
 
   return (
     <li className="habit">
@@ -10,20 +16,20 @@ const HabitFu = ({ habit, handleIncrement, handleDecrement, handleDelete }) => {
       <span className="habitCount">{count}</span>
       <button
         className="habitBtn habitIncrease"
-        onClick={() => handleIncrement(habit)}
+        onClick={() => handleIncrement(habits)}
       >
         <BsPlusCircle />
       </button>
       <button
         className="habitBtn habitDecrease"
-        onClick={() => handleDecrement(habit)}
+        onClick={() => handleDecrement(habits)}
         disabled={count === 0}
       >
         <BsDashCircle />
       </button>
       <button
         className="habitBtn habitDelete"
-        onClick={() => handleDelete(habit)}
+        onClick={() => handleDelete(habits)}
       >
         <BsTrash />
       </button>

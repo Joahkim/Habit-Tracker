@@ -22,6 +22,9 @@ const FuBody = ({ habits, setHabits }) => {
     const newHabits = habits.filter((item) => item.id !== habit.id);
     setHabits(newHabits);
   };
+
+  console.log("바디", habits);
+
   return (
     <>
       <FuAddList habits={habits} setHabits={setHabits} />

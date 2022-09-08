@@ -7,11 +7,13 @@ const FuHabits = ({
   handleDecrement,
   handleDelete,
 }) => {
+  console.log("해비츠", habits);
+
   return (
     <ul>
       {habits.map((habit) => (
         <Habit
-          habit={habit}
+          habits={habit}
           key={habit.id}
           handleIncrement={handleIncrement}
           handleDecrement={handleDecrement}
