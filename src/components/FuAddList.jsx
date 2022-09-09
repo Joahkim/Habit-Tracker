@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, memo } from "react";
 
-const FuAddList = ({ habits, setHabits }) => {
+const FuAddList = memo(({ handleAdd }) => {
   const inputRef = useRef();
   const formRef = useRef();
 
@@ -11,13 +11,6 @@ const FuAddList = ({ habits, setHabits }) => {
     formRef.current.reset();
   };
 
-  const handleAdd = (name) => {
-    const added = [{ id: Date.now(), name, count: 0 }, ...habits];
-    setHabits(added);
-  };
-
-  console.log("추가", habits);
-
   return (
     <div>
       <form onClick={submitHabit} ref={formRef}>
@@ -26,6 +19,6 @@ const FuAddList = ({ habits, setHabits }) => {
       </form>
     </div>
   );
-};
+});
 
 export default FuAddList;

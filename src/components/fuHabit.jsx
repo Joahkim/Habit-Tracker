@@ -8,7 +8,6 @@ const HabitFu = ({
   handleDelete,
 }) => {
   const { name, count } = habits;
-  console.log("해빗", habits);
 
   return (
     <li className="habit">

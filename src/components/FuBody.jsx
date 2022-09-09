@@ -23,11 +23,14 @@ const FuBody = ({ habits, setHabits }) => {
     setHabits(newHabits);
   };
 
-  console.log("바디", habits);
+  const handleAdd = (name) => {
+    const added = [{ id: Date.now(), name, count: 0 }, ...habits];
+    setHabits(added);
+  };
 
   return (
     <>
-      <FuAddList habits={habits} setHabits={setHabits} />
+      <FuAddList habits={habits} setHabits={setHabits} handleAdd={handleAdd} />
       <FuHabits
         habits={habits}
         handleIncrement={handleIncrement}

@@ -8,7 +8,6 @@ const NavFu = ({ habits }) => {
   habits.forEach((habit) => {
     totalCount += habit.count;
   });
-  console.log("네브", habits);
 
   return (
     <>

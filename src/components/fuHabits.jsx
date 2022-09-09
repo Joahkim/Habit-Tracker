@@ -7,8 +7,6 @@ const FuHabits = ({
   handleDecrement,
   handleDelete,
 }) => {
-  console.log("해비츠", habits);
-
   return (
     <ul>
       {habits.map((habit) => (
